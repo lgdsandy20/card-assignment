@@ -1,0 +1,336 @@
+/* Basic Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom font */
+body {
+  font-family: "Inter", sans-serif; /* Inter is a common sans-serif font */
+}
+
+/* Scrollbar styles (from original) */
+.card-container::-webkit-scrollbar {
+  width: 8px;
+}
+.card-container::-webkit-scrollbar-thumb {
+  background-color: #4a5568; /* dark-gray */
+  border-radius: 4px;
+}
+.card-container::-webkit-scrollbar-track {
+  background-color: #2d3748; /* darker-gray */
+}
+
+/* Body Styles */
+.body-styles {
+  background-color: #111827; /* Equivalent to Tailwind bg-gray-900 */
+  color: #f3f4f6; /* Equivalent to Tailwind text-gray-100 */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2.5rem; /* py-10 */
+  padding-bottom: 2.5rem; /* py-10 */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Main Wrapper */
+.main-wrapper {
+  width: 100%;
+  max-width: 56rem; /* max-w-4xl */
+  padding: 1rem; /* p-4 */
+}
+
+/* Header */
+.header {
+  margin-bottom: 2.5rem; /* mb-10 */
+  text-align: center;
+}
+
+.header-title {
+  font-size: 2.25rem; /* text-4xl */
+  line-height: 2.5rem;
+  font-weight: 700; /* font-bold */
+  background-image: linear-gradient(
+    to right,
+    #a78bfa,
+    #ec4899,
+    #ef4444
+  ); /* from-purple-400 via-pink-500 to-red-500 */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.header-subtitle {
+  color: #9ca3af; /* text-gray-400 */
+  margin-top: 0.5rem; /* mt-2 */
+  font-size: 1.125rem; /* text-lg */
+}
+
+/* Form Styles */
+.card-form {
+  background-color: #1f2937; /* bg-gray-800 */
+  padding: 1.5rem; /* p-6 */
+  border-radius: 0.75rem; /* rounded-xl */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+  margin-bottom: 3rem; /* mb-12 */
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr)); /* grid-cols-1 */
+  gap: 1.5rem; /* gap-6 */
+  margin-bottom: 1.5rem; /* mb-6 */
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500; /* font-medium */
+  color: #d1d5db; /* text-gray-300 */
+  margin-bottom: 0.25rem; /* mb-1 */
+}
+
+.input-field,
+.textarea-field {
+  width: 100%;
+  padding: 0.75rem; /* p-3 */
+  background-color: #374151; /* bg-gray-700 */
+  border: 1px solid #4b5563; /* border border-gray-600 */
+  border-radius: 0.5rem; /* rounded-lg */
+  color: #f3f4f6; /* text-gray-100 */
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-field::placeholder,
+.textarea-field::placeholder {
+  color: #6b7280; /* placeholder-gray-500 */
+  opacity: 1;
+}
+
+.input-field:focus,
+.textarea-field:focus {
+  outline: none;
+  border-color: #a855f7; /* focus:border-purple-500 */
+  box-shadow: 0 0 0 2px #a855f7; /* focus:ring-2 focus:ring-purple-500 */
+}
+
+.textarea-field {
+  resize: none; /* resize-none */
+}
+
+.error-message {
+  color: #f87171; /* text-red-400 */
+  margin-bottom: 1rem; /* mb-4 */
+  font-size: 0.875rem; /* text-sm */
+}
+
+.hidden {
+  display: none !important;
+}
+
+.submit-button {
+  width: 100%;
+  background-image: linear-gradient(
+    to right,
+    #9333ea,
+    #3b82f6
+  ); /* bg-gradient-to-r from-purple-600 to-blue-500 */
+  color: #ffffff; /* text-white */
+  font-weight: 600; /* font-semibold */
+  padding: 0.75rem 2rem; /* py-3 px-8 */
+  border: none;
+  border-radius: 0.5rem; /* rounded-lg */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.submit-button:hover {
+  background-image: linear-gradient(
+    to right,
+    #7e22ce,
+    #2563eb
+  ); /* hover:from-purple-700 hover:to-blue-600 */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05); /* hover:shadow-lg */
+  transform: scale(1.05); /* hover:scale-105 */
+}
+
+.submit-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.5); /* focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 */
+}
+
+/* Generated Cards Section */
+.cards-heading {
+  font-size: 1.5rem; /* text-2xl */
+  font-weight: 600; /* font-semibold */
+  margin-bottom: 1.5rem; /* mb-6 */
+  text-align: center;
+  color: #d1d5db; /* text-gray-300 */
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.5rem; /* gap-6 */
+  min-height: 200px;
+  padding: 1rem; /* p-4 */
+  background-color: #1f2937; /* bg-gray-800 */
+  border-radius: 0.75rem; /* rounded-xl */
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06); /* shadow-inner */
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+.no-cards-message {
+  color: #6b7280; /* text-gray-500 */
+  font-style: italic;
+}
+
+/* Dynamically Generated Card Styles */
+.generated-card {
+  background-image: linear-gradient(
+    to bottom right,
+    #374151,
+    #1f2937
+  ); /* from-gray-700 to-gray-800 */
+  color: #ffffff;
+  padding: 1.5rem; /* p-6 */
+  border-radius: 0.75rem; /* rounded-xl */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-xl */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #4b5563; /* border border-gray-600 */
+  transition: all 0.3s ease-in-out;
+}
+
+.generated-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px 5px rgba(168, 85, 247, 0.3); /* hover:shadow-purple-500/30 */
+}
+
+.card-content-wrapper {
+  /* Helper class for flex structure if needed */
+  flex-grow: 1;
+}
+
+.card-header-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem; /* mb-4 */
+}
+
+.card-avatar {
+  width: 3rem; /* w-12 */
+  height: 3rem; /* h-12 */
+  background-image: linear-gradient(
+    to right,
+    #a855f7,
+    #ec4899
+  ); /* from-purple-500 to-pink-500 */
+  border-radius: 9999px; /* rounded-full */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem; /* text-xl */
+  font-weight: 700; /* font-bold */
+  color: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+  margin-right: 1rem; /* mr-4 */
+}
+
+.card-name {
+  font-size: 1.25rem; /* text-xl */
+  font-weight: 700; /* font-bold */
+  color: #c4b5fd; /* text-purple-300 */
+}
+
+.card-email {
+  font-size: 0.75rem; /* text-xs */
+  color: #a78bfa; /* text-purple-400 */
+  opacity: 0.9;
+  word-break: break-all;
+}
+
+.card-detail {
+  font-size: 0.875rem; /* text-sm */
+  color: #d1d5db; /* text-gray-300 */
+  line-height: 1.625; /* leading-relaxed */
+  white-space: pre-wrap;
+  word-wrap: break-word; /* break-words */
+}
+
+.card-footer {
+  margin-top: 1.25rem; /* mt-5 */
+  padding-top: 1rem; /* pt-4 */
+  border-top: 1px solid #4b5563; /* border-t border-gray-600 */
+  font-size: 0.75rem; /* text-xs */
+  color: #6b7280; /* text-gray-500 */
+  text-align: right;
+}
+
+/* Responsive Media Queries */
+@media (min-width: 768px) {
+  /* md breakpoint */
+  .main-wrapper {
+    padding: 2rem; /* md:p-8 */
+  }
+  .header-title {
+    font-size: 3rem; /* md:text-5xl */
+    line-height: 1;
+  }
+  .card-form {
+    padding: 2rem; /* md:p-8 */
+  }
+  .form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
+  }
+  .submit-button {
+    width: auto; /* md:w-auto */
+  }
+  .cards-heading {
+    font-size: 1.875rem; /* md:text-3xl */
+  }
+  .card-container {
+    gap: 2rem; /* md:gap-8 */
+  }
+  .generated-card {
+    width: 350px; /* md:w-[350px] */
+  }
+  .card-name {
+    font-size: 1.5rem; /* md:text-2xl */
+  }
+  .card-email {
+    font-size: 0.875rem; /* md:text-sm */
+  }
+  .card-detail {
+    font-size: 1rem; /* md:text-base */
+  }
+}
+
+@media (min-width: 640px) {
+  /* sm breakpoint (only for card width) */
+  .generated-card {
+    /* If width is 100% on mobile, this ensures it takes specific width on sm+ */
+    /* However, md:w-[350px] will override sm:w-80 if screen is md+ */
+    /* So, this rule might be less impactful if md styles are also present */
+    width: 20rem; /* sm:w-80 (320px) */
+  }
+}
+/* Ensure md overrides sm for card width */
+@media (min-width: 768px) {
+  .generated-card {
+    width: 350px !important; /* md:w-[350px] */
+  }
+}
