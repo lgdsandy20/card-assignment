@@ -1,74 +1,61 @@
-// Get DOM elements
-        const cardForm = document.getElementById('cardForm');
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const detailInput = document.getElementById('detail');
-        const cardContainer = document.getElementById('cardContainer');
-        const errorMessage = document.getElementById('errorMessage');
-        const noCardsMessage = document.getElementById('noCardsMessage');
+const cardForm = document.getElementById('cardForm');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const detailInput = document.getElementById('detail');
+const avatarInput = document.getElementById('avatarInput');
+const cardContainer = document.getElementById('cardContainer');
 
-        // Event listener for form submission
-        cardForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission (page reload)
+cardForm.addEventListener('submit', function(event) {
+    event.preventDefault();
 
-            // Get input values
-            const name = nameInput.value.trim();
-            const email = emailInput.value.trim();
-            const detail = detailInput.value.trim();
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const detail = detailInput.value.trim();
+    const avatarFile = avatarInput.files[0];
 
-            // Basic validation
-            if (!name || !email || !detail) {
-                errorMessage.textContent = 'Oops! All fields are required to create a card.';
-                errorMessage.classList.remove('hidden');
-                // Hide message after 3 seconds
-                setTimeout(() => {
-                    errorMessage.classList.add('hidden');
-                }, 3000);
-                return;
-            }
-            errorMessage.classList.add('hidden'); // Hide error message if previously shown
+    if (!name || !email || !detail) {
+        alert('Please fill in all fields: Name, Email, and Details.');
+        return;
+    }
 
-            // Hide "no cards" message if it's visible
-            if (noCardsMessage && !noCardsMessage.classList.contains('hidden')) {
-                noCardsMessage.classList.add('hidden');
-            }
+    const createAndDisplayCard = (avatarHTML) => {
+        const cardElement = document.createElement('div');
+        cardElement.className = 'generated-card';
 
-            // Create card element
-            const card = document.createElement('div');
-            card.className = 'generated-card'; // Apply the main card style
-
-            // Sanitize text content to prevent XSS (basic example)
-            const sanitize = (str) => {
-                const temp = document.createElement('div');
-                temp.textContent = str;
-                return temp.innerHTML;
-            }
-
-            // Card content using new CSS classes
-            card.innerHTML = `
-                <div class="card-content-wrapper">
-                    <div class="card-header-info">
-                        <div class="card-avatar">
-                            ${sanitize(name.charAt(0).toUpperCase())}
-                        </div>
-                        <div>
-                            <h3 class="card-name">${sanitize(name)}</h3>
-                            <p class="card-email">${sanitize(email)}</p>
-                        </div>
-                    </div>
-                    <p class="card-detail">${sanitize(detail)}</p>
+        cardElement.innerHTML = `
+            <div class="card-header">
+                <div class="card-avatar">${avatarHTML}</div>
+                <div>
+                    <h3 class="card-name">${name}</h3>
+                    <p class="card-email">${email}</p>
                 </div>
-                <div class="card-footer">
-                    Generated: ${new Date().toLocaleTimeString()}
-                </div>
-            `;
+            </div>
+            <p class="card-details-text">${detail}</p>
+            <div class="card-actions">
+                <button class="delete-btn">Delete</button>
+            </div>
+        `;
+        cardContainer.prepend(cardElement);
 
-            // Prepend the new card to the container for a "newest first" feel
-            cardContainer.prepend(card);
-
-            // Clear input fields
-            nameInput.value = '';
-            emailInput.value = '';
-            detailInput.value = '';
-            nameInput.focus(); // Focus on the first input for better UX
+        const deleteBtn = cardElement.querySelector('.delete-btn');
+        deleteBtn.addEventListener('click', function() {
+            cardElement.remove();
         });
+
+        cardForm.reset();
+        avatarInput.value = '';
+        nameInput.focus();
+    };
+
+    if (avatarFile) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imageAvatarHtml = `<img src="${e.target.result}" alt="Avatar">`;
+            createAndDisplayCard(imageAvatarHtml);
+        }
+        reader.readAsDataURL(avatarFile);
+    } else {
+        const textAvatarHtml = name.charAt(0).toUpperCase();
+        createAndDisplayCard(textAvatarHtml);
+    }
+});
