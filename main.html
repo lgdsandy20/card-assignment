@@ -1,47 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Card Generator</title>
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Generator</title> <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+     </head>
+  <body>
+    <div class="container"> <header class="header">
+        <h1>Creating Personlized Card</h1> <p>Enter your details to create a personalized card.</p> </header>
 
-</head>
-<body class="body-styles">
-    <div class="main-wrapper">
-        <header class="header">
-            <h1 class="header-title">Dynamic Card Generator</h1>
-            <p class="header-subtitle">Enter your details to create a personalized card.</p>
-        </header>
-
-        <form id="cardForm" class="card-form">
-            <div class="form-grid">
-                <div>
-                    <label for="name" class="form-label">Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="e.g., Ada Lovelace" class="input-field">
-                </div>
-                <div>
-                    <label for="email" class="form-label">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="e.g., ada@example.com" class="input-field">
-                </div>
-            </div>
-            <div style="margin-bottom: 1.5rem;"> <label for="detail" class="form-label">Details / Bio</label>
-                <textarea id="detail" name="detail" rows="3" placeholder="e.g., Pioneer programmer, enthusiast of analytical engines." class="textarea-field"></textarea>
-            </div>
-
-            <div id="errorMessage" class="error-message hidden"></div>
-
-            <button type="submit" id="createCardBtn" class="submit-button">
-                Create Card
-            </button>
-        </form>
-
-        <h2 class="cards-heading">Generated Cards</h2>
-        <div id="cardContainer" class="card-container">
-            <p id="noCardsMessage" class="no-cards-message">No cards generated yet. Fill out the form above!</p>
+      <form id="cardForm" class="card-input-form"> <div class="form-row">
+          <div>
+            <label for="name">Full Name</label> <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your Name"
+              class="form-input"
+            /> </div>
+          <div>
+            <label for="email">Email Address</label> <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your Email Id"
+              class="form-input"
+            /> </div>
         </div>
-    </div>
+        <div class="form-row">
+          <div>
+            <label for="avatarInput">Avatar Image (Optional)</label>
+            <input
+              type="file"
+              id="avatarInput"
+              name="avatarInput"
+              accept="image/*"
+              class="form-input"
+            />
+          </div>
+          <div>
+             </div>
+        </div>
+        <div class="form-row">
+          <label for="detail">Details / Bio</label> <textarea
+            id="detail"
+            name="detail"
+            rows="3"
+            placeholder="Your Description"
+            class="form-textarea"
+          ></textarea> </div>
 
-    <script src="script.js"></script>
-</body>
+        <button type="submit" id="createCardBtn" class="button-create">
+          Create Card
+        </button> </form>
+    </div> <h2 class="cards-section-title">Generated Cards</h2> <div id="cardContainer" class="card-display-area"> </div>
+
+    <script src="script.js"></script> </body>
 </html>
